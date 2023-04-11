@@ -84,6 +84,7 @@
 			<Option link="0" />
 		</Unit>
 		<Unit filename="rtc.h" />
+		<Unit filename="sfr_defs.h" />
 		<Unit filename="timer1.c">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -41,7 +41,8 @@ void config_init()
 
     }
 
-
+    //uart_writedec32(write_busy);
+    get_writebusy();
 }
 
 int config_is_data_valid()

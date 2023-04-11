@@ -6,11 +6,6 @@
  *
  */
 
-unsigned char writebuf[64];   //A 64 byte write buffer used by writebuf() and the interrupt service routine.
-unsigned char bufidx;           //The index of the next writebuf character the interrupt service routine should write.
-unsigned char writesize;        //The size of the data (in bytes) within the write buffer that must be written.
-unsigned int writeaddr;         //Used by the interrupt service routine, specifies the next EEPROM address with which to write the data to.
-volatile unsigned char write_busy;      //Set to 1 if there is data in the write buffer that needs to be written. Cleared to 0 by the interrupt service routine when the last byte of the data has been written.
 
 
 /*
@@ -42,3 +37,5 @@ EEPROM interrupts.
 */
 
 void __vector_22();
+
+void get_writebusy();
