@@ -1,9 +1,8 @@
 # depslib dependency file v1.0
-1681243725 source:/home/sohamchakraborty/Desktop/Project 2/config.c
+1681418088 source:/home/sohamchakraborty/Desktop/Project 2/config.c
 	"config.h"
 	"eeprom.h"
 	"util.h"
-	<stdio.h>
 	<string.h>
 
 1681238639 /home/sohamchakraborty/Desktop/Project 2/config.h
@@ -12,12 +11,12 @@
 
 1681108730 /home/sohamchakraborty/Desktop/Project 2/util.h
 
-1681248083 source:/home/sohamchakraborty/Desktop/Project 2/delay.c
+1681417712 source:/home/sohamchakraborty/Desktop/Project 2/delay.c
 	"delay.h"
 
 1681238189 /home/sohamchakraborty/Desktop/Project 2/delay.h
 
-1681250601 source:/home/sohamchakraborty/Desktop/Project 2/eeprom.c
+1681418432 source:/home/sohamchakraborty/Desktop/Project 2/eeprom.c
 	"eeprom.h"
 	"uart.h"
 	"sfr_defs.h"
@@ -29,7 +28,7 @@
 
 1681108715 /home/sohamchakraborty/Desktop/Project 2/led.h
 
-1681241896 source:/home/sohamchakraborty/Desktop/Project 2/main.c
+1681416156 source:/home/sohamchakraborty/Desktop/Project 2/main.c
 	"util.h"
 	"timer1.h"
 	"delay.h"

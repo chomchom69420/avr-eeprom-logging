@@ -30,7 +30,7 @@ static volatile unsigned int delay_count[2] = {0, 0};
 static unsigned int limit[2] = {0, 0};
 static unsigned char initialized = 0;
 
-typedef void (*func_t)(void);
+//typedef void (*func_t)(void);
 
 void delay_init() {
     if (!initialized) {

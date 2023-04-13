@@ -12,7 +12,7 @@
 //#define __SFR_OFFSET 0
 //#define _SFR_IO16(io_addr) ((io_addr) + __SFR_OFFSET)
 
-#define EEAR _SFR_IO16(0x41)
+#define EEAR _SFR_IO16(0x21)
 
 //#define EEARL _SFR_IO8(0x21)
 #define EEAR0 0
@@ -46,15 +46,29 @@ unsigned int writeaddr;         //Used by the interrupt service routine, specifi
 
 void EEPROM_set_write_mode();
 
-void get_writebusy(){
-    uart_writedec32(write_busy);
+#pragma GCC push_options
+#pragma GCC optimize ("Os")
+void eeprom_unlock()
+{
+    //EECR &= ~(1<<EEPE);
+    EECR |= (1<<EEMPE);                     //enable master write
+    EECR |= (1<<EEPE);                      //enable write
 }
+#pragma GCC pop_options
+
+#pragma GCC push_options
+#pragma GCC optimize ("Os")
+void eeprom_readenable()
+{
+    EECR |= (1<<EERE);
+}
+#pragma GCC pop_options
 
 int eeprom_isbusy(){
-    if(write_busy==1)
-    {
-        int i=0;
-    }
+    //if(write_busy==1)
+    //{
+    //    int i=0;
+    //}
     return write_busy==1;
     //return 0;
 }
@@ -73,7 +87,8 @@ void eeprom_writebuf(unsigned int addr, unsigned char* buf, unsigned char size){
     //init EEPROM
     EECR |= (1<<EEPM1);
     EECR &= ~(1<<EEPM0);
-    EEARH &= ~(1<<EEAR8);
+
+    //EEARH &= ~(1<<EEAR8);
 
     SREG |= (1<<I_SREG);        //Global interrupt enable
     EECR |= (1<<EERIE);         //Enabling EEPROM ready interrupt
@@ -83,17 +98,18 @@ void eeprom_writebuf(unsigned int addr, unsigned char* buf, unsigned char size){
 
 void eeprom_readbuf(unsigned int addr, unsigned char* buf, unsigned char size)
 {
-    unsigned int read_addr=addr;;
+    unsigned int read_addr=addr;
     for(int i=0;i<size;i++)
     {
         //Read from EEPROM and store in buf[0:size-1]
-        while(EECR & (1<<EEPE));     //waiting until EEPE becomes 0)
+        while(EECR & (1<<EEPE));     //waiting until EEPE becomes 0
+
         EEAR = read_addr;
-        EECR |= (1<<EERE);
+
+        eeprom_readenable();
+
         //Wait for 4 cycles
-        //uart_writestr("Here before");
         __builtin_avr_delay_cycles(4);
-        //uart_writestr("Here after");
 
         buf[i] = EEDR;
         read_addr++;
@@ -115,12 +131,12 @@ void __vector_22(){
 
         //while (SPMCSR & (1<<SELFPRGEN));     //waiting until SELFPRGEN becomes 0
 
+        eeprom_unlock();
+
         EEAR = writeaddr;                      //Writes address to EEARL register
         EEDR = writebuf[bufidx];                //Writes data to EEDR register
 
-        //EECR &= ~(1<<EEPE);
-        EECR |= (1<<EEMPE);                     //enable master write
-        EECR |= (1<<EEPE);                      //enable write
+
 
         writeaddr++;
         bufidx++;
@@ -144,5 +160,7 @@ void __vector_22(){
 void EEPROM_set_write_mode(){
     EECR |= (1<<EEPM1);
 }
+
+
 
 

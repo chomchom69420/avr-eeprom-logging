@@ -31,8 +31,11 @@ int main(void)
     uart_writestr("SER 486 Project 2 - Manish Mysore Rajesh Gangadhar\n\r");
 
     uart_writestr(vpd.model);
+    uart_writestr("\n\r");
     uart_writestr(vpd.manufacturer);
+    uart_writestr("\n\r");
     uart_writestr(vpd.token);
+    uart_writestr("\n\r");
 
     //Set the config.use_static_ip=1 and set modified
     config.use_static_ip=1;
