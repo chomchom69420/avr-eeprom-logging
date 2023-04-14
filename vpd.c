@@ -1,7 +1,7 @@
 #include "vpd.h"
 #include "eeprom.h"
 #include "util.h"
-#include <string.h>
+
 
 /*
 *   x1 = 0x4D (M) & 0xFE = 0x4C
@@ -13,6 +13,24 @@
 */
 
 vpd_struct vpd_defaults = {"SER", "Manish", "Mani", "abcd1234", 0, {0x4C,0x41, 0x4E, 0x4D, 0x41, 0x4E}, "USA", 0};
+
+int compare(char a[],char b[])
+{
+    int flag=0,i=0;  // integer variables declaration
+    while(a[i]!='\0' &&b[i]!='\0')  // while loop
+    {
+       if(a[i]!=b[i])
+       {
+           flag=1;
+           break;
+       }
+       i++;
+    }
+    if(flag==0)
+    return 0;
+    else
+    return 1;
+}
 
 void vpd_init()
 {
@@ -42,14 +60,18 @@ void vpd_init()
 
         //Initialize data by reading default values
         eeprom_readbuf(base_addr, (unsigned char*)buf, size);
-        memcpy((unsigned char*)&vpd, buf, size);
+        //memcpy((unsigned char*)&vpd, buf, size);
+        for(int i=0;i<size;i++)
+        {
+            p[i]=buf[i];
+        }
 
     }
 }
 
 int vpd_is_data_valid()
 {
-    return (vpd.token == "SER") && is_checksum_valid((unsigned char*)&vpd, sizeof(vpd_struct));
+    return compare(vpd.token, vpd_defaults.token) && is_checksum_valid((unsigned char*)&vpd, sizeof(vpd_struct));
 }
 
 void vpd_write_defaults()

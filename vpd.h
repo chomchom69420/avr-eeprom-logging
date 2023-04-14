@@ -6,6 +6,7 @@
  *
  */
 
+
  typedef struct
 {
     char token[4];
@@ -19,7 +20,6 @@
 } vpd_struct;
 
 vpd_struct vpd;
-
 
  /*
  initializes vpd member data from the EEPROM. If vpd data is
