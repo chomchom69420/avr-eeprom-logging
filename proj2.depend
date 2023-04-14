@@ -1,11 +1,10 @@
 # depslib dependency file v1.0
-1681452122 source:/home/sohamchakraborty/Desktop/Project 2/config.c
+1681482739 source:/home/sohamchakraborty/Desktop/Project 2/config.c
 	"config.h"
 	"eeprom.h"
 	"util.h"
-	<string.h>
 
-1681238639 /home/sohamchakraborty/Desktop/Project 2/config.h
+1681482737 /home/sohamchakraborty/Desktop/Project 2/config.h
 
 1681244605 /home/sohamchakraborty/Desktop/Project 2/eeprom.h
 
@@ -28,7 +27,7 @@
 
 1681108715 /home/sohamchakraborty/Desktop/Project 2/led.h
 
-1681416156 source:/home/sohamchakraborty/Desktop/Project 2/main.c
+1681484212 source:/home/sohamchakraborty/Desktop/Project 2/main.c
 	"util.h"
 	"timer1.h"
 	"delay.h"
@@ -44,7 +43,7 @@
 
 1681108722 /home/sohamchakraborty/Desktop/Project 2/rtc.h
 
-1681454832 /home/sohamchakraborty/Desktop/Project 2/vpd.h
+1681457515 /home/sohamchakraborty/Desktop/Project 2/vpd.h
 
 1681108727 /home/sohamchakraborty/Desktop/Project 2/uart.h
 
@@ -57,11 +56,10 @@
 	"util.h"
 	"string.h"
 
-1681455473 source:/home/sohamchakraborty/Desktop/Project 2/vpd.c
+1681462720 source:/home/sohamchakraborty/Desktop/Project 2/vpd.c
 	"vpd.h"
 	"eeprom.h"
 	"util.h"
-	<string.h>
 
 1681249256 /home/sohamchakraborty/Desktop/Project 2/sfr_defs.h
 	<inttypes.h>

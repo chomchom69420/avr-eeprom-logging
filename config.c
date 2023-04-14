@@ -13,6 +13,8 @@ config_struct config_defaults = {
     .static_ip={192, 168, 1, 100},
     .checksum=0};
 
+
+
 int str_compare(char a[],char b[])
 {
     int flag=0,i=0;  // integer variables declaration
@@ -37,7 +39,7 @@ void config_init()
 
     //initialize config
     unsigned int base_addr=0x040;
-    int size = sizeof(config_struct)+1;
+    int size = sizeof(config_struct);
     unsigned char buf[size+10];
     unsigned char* p = (unsigned char*)&config;
 
@@ -93,9 +95,10 @@ void config_update()
 
         //Write config to eeprom
         unsigned int base_addr = 0x040;
-        int size = sizeof(config_struct)+1;
-        unsigned char buf[size+10];
-        eeprom_writebuf(base_addr, (unsigned char*)buf, size);
+        int size = sizeof(config_struct);
+        unsigned char* p = (unsigned char*)&config;
+
+        eeprom_writebuf(base_addr, p, size);
 
         //Clearing modified flag
         modified=0;

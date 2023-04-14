@@ -36,7 +36,7 @@ int main(void)
     uart_writestr("\n\r");
     uart_writestr(vpd.manufacturer);
     uart_writestr("\n\r");
-    uart_writestr(vpd.token);
+    uart_writestr(config.token);
     uart_writestr("\n\r");
 
     //Set the config.use_static_ip=1 and set modified
@@ -49,7 +49,14 @@ int main(void)
     log_add_record(0xbb);
     log_add_record(0xcc);
 
+    log_update();
+    log_update();
+    log_update();
+
     int dumped=0;
+
+    //uart_writehex8(config.checksum);
+    //uart_writestr("\n\r");
 
 
     while(1)
