@@ -1,10 +1,18 @@
 #include "vpd.h"
 #include "eeprom.h"
 #include "util.h"
-#include <stdio.h>
 #include <string.h>
 
-vpd_struct vpd_defaults = {"SER", "Manish", "Mani", "abcd1234", 0, "sbsdjb", "USA", 0};
+/*
+*   x1 = 0x4D (M) & 0xFE = 0x4C
+*   x2 = 0x41 (A)
+*   x3 = 0x42 (N)
+*   y1 = 0x4D (M)
+*   y2 = 0x41 (A)
+*   y3 = 0x42 (N)
+*/
+
+vpd_struct vpd_defaults = {"SER", "Manish", "Mani", "abcd1234", 0, {0x4C,0x41, 0x4E, 0x4D, 0x41, 0x4E}, "USA", 0};
 
 void vpd_init()
 {
@@ -13,10 +21,20 @@ void vpd_init()
     //Read 43 bytes from 0x000
     unsigned int base_addr=0x000;
     int size = sizeof(vpd_struct);
-    unsigned char buf[size];
-    eeprom_readbuf(base_addr, (unsigned char*)buf, size);
+    unsigned char buf[size+10];
+    unsigned char* p = (unsigned char*)&vpd;
 
-    memcpy((unsigned char*)&vpd, (unsigned char*)buf, size);
+
+    eeprom_readbuf(base_addr, (unsigned char*)buf, size);
+    //memcpy((unsigned char*)&vpd, (unsigned char*)buf, size);
+
+    for(int i=0;i<size;i++)
+    {
+        p[i]=buf[i];
+    }
+
+
+    //eeprom_readbuf(base_addr, (unsigned char*)&vpd, size);
 
     if(!vpd_is_data_valid())
     {
@@ -41,10 +59,20 @@ void vpd_write_defaults()
     //Writing defaults to eeprom
     unsigned int base_addr = 0x000;
     int size = sizeof(vpd_struct);
-    unsigned char buf[size];
-    memcpy((unsigned char*)buf, (unsigned char*)&vpd_defaults, size);
+    unsigned char buf[size+10];
+    unsigned char* p = (unsigned char*)&vpd_defaults;
 
+    for(int i=0;i<size;i++)
+    {
+        buf[i] = p[i];
+    }
+
+
+    //memcpy((unsigned char*)buf, (unsigned char*)&vpd_defaults, size);
     eeprom_writebuf(base_addr, (unsigned char*)buf, size);
+
+
+    //eeprom_writebuf(base_addr, (unsigned char*)&vpd, size);
 }
 
 

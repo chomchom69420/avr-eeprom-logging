@@ -19,7 +19,7 @@ void config_init()
 
     //initialize config
     unsigned int base_addr=0x040;
-    int size = sizeof(config_struct);
+    int size = sizeof(config_struct)+1;
     unsigned char buf[size];
     eeprom_readbuf(base_addr, buf, size);
 
@@ -63,7 +63,7 @@ void config_update()
 
         //Write config to eeprom
         unsigned int base_addr = 0x040;
-        int size = sizeof(config_struct);
+        int size = sizeof(config_struct)+1;
         unsigned char buf[size];
         eeprom_writebuf(base_addr, (unsigned char*)buf, size);
 

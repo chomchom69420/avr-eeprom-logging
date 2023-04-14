@@ -80,7 +80,10 @@ void eeprom_writebuf(unsigned int addr, unsigned char* buf, unsigned char size){
 
     //Copying
     for (int i=0;i<size;i++)
+    {
         writebuf[i] = buf[i];
+    }
+
 
     writesize = size;
 

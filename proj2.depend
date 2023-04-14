@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1681418088 source:/home/sohamchakraborty/Desktop/Project 2/config.c
+1681452122 source:/home/sohamchakraborty/Desktop/Project 2/config.c
 	"config.h"
 	"eeprom.h"
 	"util.h"
@@ -16,7 +16,7 @@
 
 1681238189 /home/sohamchakraborty/Desktop/Project 2/delay.h
 
-1681418432 source:/home/sohamchakraborty/Desktop/Project 2/eeprom.c
+1681454115 source:/home/sohamchakraborty/Desktop/Project 2/eeprom.c
 	"eeprom.h"
 	"uart.h"
 	"sfr_defs.h"
@@ -44,7 +44,7 @@
 
 1681108722 /home/sohamchakraborty/Desktop/Project 2/rtc.h
 
-1681238658 /home/sohamchakraborty/Desktop/Project 2/vpd.h
+1681454769 /home/sohamchakraborty/Desktop/Project 2/vpd.h
 
 1681108727 /home/sohamchakraborty/Desktop/Project 2/uart.h
 
@@ -57,11 +57,10 @@
 	"util.h"
 	"string.h"
 
-1681238662 source:/home/sohamchakraborty/Desktop/Project 2/vpd.c
+1681454775 source:/home/sohamchakraborty/Desktop/Project 2/vpd.c
 	"vpd.h"
 	"eeprom.h"
 	"util.h"
-	<stdio.h>
 	<string.h>
 
 1681249256 /home/sohamchakraborty/Desktop/Project 2/sfr_defs.h
