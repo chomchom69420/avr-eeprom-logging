@@ -1996,6 +1996,8 @@ int main(void)
      bbe:	91 e0       	ldi	r25, 0x01	; 1
      bc0:	0e 94 21 0e 	call	0x1c42	; 0x1c42 <uart_writestr>
 
+    //uart_writestr("SER 486 Project 2 - Venkata Kanaka Rama Meher Virinchi\n\r");
+
     uart_writestr(vpd.model);
      bc4:	85 ed       	ldi	r24, 0xD5	; 213
      bc6:	92 e0       	ldi	r25, 0x02	; 2
@@ -2566,9 +2568,9 @@ int is_checksum_valid(unsigned char* data, unsigned int dsize)
      f22:	08 95       	ret
 
 00000f24 <compare>:
-*/
 
-vpd_struct vpd_defaults = {"SER", "Manish", "Mani", "abcd1234", 0, {0x4C,0x41, 0x4E, 0x4D, 0x41, 0x4E}, "USA", 0};
+
+//vpd_struct vpd_defaults = {"SER", "Venkata", "Kanaka", "pqrs1234", 0, {0x56,0x45, 0x4E, 0x4B, 0x41, 0x4E}, "USA", 0};
 
 int compare(char a[],char b[])
 {
@@ -2628,7 +2630,7 @@ int compare(char a[],char b[])
      f7c:	01 96       	adiw	r24, 0x01	; 1
      f7e:	9c 83       	std	Y+4, r25	; 0x04
      f80:	8b 83       	std	Y+3, r24	; 0x03
-vpd_struct vpd_defaults = {"SER", "Manish", "Mani", "abcd1234", 0, {0x4C,0x41, 0x4E, 0x4D, 0x41, 0x4E}, "USA", 0};
+//vpd_struct vpd_defaults = {"SER", "Venkata", "Kanaka", "pqrs1234", 0, {0x56,0x45, 0x4E, 0x4B, 0x41, 0x4E}, "USA", 0};
 
 int compare(char a[],char b[])
 {

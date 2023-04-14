@@ -6,13 +6,27 @@
 /*
 *   x1 = 0x4D (M) & 0xFE = 0x4C
 *   x2 = 0x41 (A)
-*   x3 = 0x42 (N)
+*   x3 = 0x4E (N)
 *   y1 = 0x4D (M)
 *   y2 = 0x41 (A)
-*   y3 = 0x42 (N)
+*   y3 = 0x4E (N)
 */
 
 vpd_struct vpd_defaults = {"SER", "Manish", "Mani", "abcd1234", 0, {0x4C,0x41, 0x4E, 0x4D, 0x41, 0x4E}, "USA", 0};
+
+//For the other guy --> delete this and the following comments
+
+/*
+*   x1 = 0x56 (V) & 0xFE = 0x56
+*   x2 = 0x45 (E)
+*   x3 = 0x4E (N)
+*   y1 = 0x4B (K)
+*   y2 = 0x41 (A)
+*   y3 = 0x4E (N)
+*/
+
+
+//vpd_struct vpd_defaults = {"SER", "Venkata", "Kanaka", "pqrs1234", 0, {0x56,0x45, 0x4E, 0x4B, 0x41, 0x4E}, "USA", 0};
 
 int compare(char a[],char b[])
 {

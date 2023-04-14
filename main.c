@@ -30,6 +30,8 @@ int main(void)
     /* Output project information to the console */
     uart_writestr("SER 486 Project 2 - Manish Mysore Rajesh Gangadhar\n\r");
 
+    //uart_writestr("SER 486 Project 2 - Venkata Kanaka Rama Meher Virinchi\n\r");
+
     uart_writestr(vpd.model);
     uart_writestr("\n\r");
     uart_writestr(vpd.manufacturer);
