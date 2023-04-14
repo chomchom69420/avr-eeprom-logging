@@ -84,6 +84,8 @@ void eeprom_writebuf(unsigned int addr, unsigned char* buf, unsigned char size){
         writebuf[i] = buf[i];
     }
 
+    //uart_writestr(writebuf);
+
 
     writesize = size;
 
@@ -134,23 +136,21 @@ void __vector_22(){
 
         //while (SPMCSR & (1<<SELFPRGEN));     //waiting until SELFPRGEN becomes 0
 
-        eeprom_unlock();
-
         EEAR = writeaddr;                      //Writes address to EEARL register
         EEDR = writebuf[bufidx];                //Writes data to EEDR register
 
-
+        eeprom_unlock();
 
         writeaddr++;
         bufidx++;
 
         //Set the interrupt flag
-        SREG |= (1<<I_SREG);
+        //SREG |= (1<<I_SREG);
 
         //Re-enable eeprom ready interrupt (just in case)
-        EECR |= (1<<EERIE);
+        //EECR |= (1<<EERIE);
 
-        while(EECR & (1<<EEPE));
+        //while(EECR & (1<<EEPE)); //wait until EEPE becomes 0
     }
     else if (bufidx>=writesize)
     {

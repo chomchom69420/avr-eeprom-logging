@@ -59,17 +59,11 @@ void vpd_write_defaults()
     //Writing defaults to eeprom
     unsigned int base_addr = 0x000;
     int size = sizeof(vpd_struct);
-    unsigned char buf[size+10];
+    //unsigned char buf[size+10];
     unsigned char* p = (unsigned char*)&vpd_defaults;
 
-    for(int i=0;i<size;i++)
-    {
-        buf[i] = p[i];
-    }
-
-
     //memcpy((unsigned char*)buf, (unsigned char*)&vpd_defaults, size);
-    eeprom_writebuf(base_addr, (unsigned char*)buf, size);
+    eeprom_writebuf(base_addr, p, size);
 
 
     //eeprom_writebuf(base_addr, (unsigned char*)&vpd, size);
